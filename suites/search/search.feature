@@ -1,4 +1,6 @@
-  Scenario: Search all Patients
+Feature: Search tests
+
+Scenario: Search all Patients
     Given path 'Patient'
     And header Accept = 'application/fhir+json'
     When method GET
