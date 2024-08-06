@@ -1,5 +1,8 @@
 Feature: Search tests
 
+Background: 
+  * url 'http://hapi.fhir.org/baseR4'
+
 Scenario: Search all Patients
     Given path 'Patient'
     And header Accept = 'application/fhir+json'
