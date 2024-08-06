@@ -1,7 +1,7 @@
 Feature: FHIR API Tests
 
   Background:
-    * url http://hapi.fhir.org/baseR4/
+    * url 'http://hapi.fhir.org/baseR4/'
 
   Scenario: Search MedicationStatement by ID
     Given url 'http://test.fhir.org/r4/MedicationStatement/_search?_id=1'
