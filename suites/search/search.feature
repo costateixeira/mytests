@@ -22,7 +22,7 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: Get a patient by another logical identifier
-    Given url 'http://test.fhir.org/r4/Patient?identifier=http://trilliumbridge.eu/fhir/demos/eumfh/patient_id|EUR01P0004'
+    Given path 'Patient?identifier=http://trilliumbridge.eu/fhir/demos/eumfh/patient_id|EUR01P0004'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
@@ -153,7 +153,7 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: Search using _contained
-    Given url 'http://test.fhir.org/r4/Medication?_contained=true&_containedType=container'
+    Given path 'Medication?_contained=true&_containedType=container'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
@@ -177,19 +177,19 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: Search with OR
-    Given url 'http://test.fhir.org/r4/Patient?gender=male,unknown&_sort=gender'
+    Given path 'Patient?gender=male,unknown&_sort=gender'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
 
   Scenario: Search Composite
-    Given url 'http://test.fhir.org/r4/DiagnosticReport?result.code-value-quantity=http://loinc.org|2823-3$gt5.4|http://unitsofmeasure.org|mmol/L'
+    Given path 'DiagnosticReport?result.code-value-quantity=http://loinc.org|2823-3$gt5.4|http://unitsofmeasure.org|mmol/L'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
 
   Scenario: GraphQL query
-    Given url 'http://test.fhir.org/r4/Patient/$graphql'
+    Given path 'Patient/$graphql'
     And header Accept = 'application/fhir+json'
     And header Content-Type = 'application/json'
     And request {"query":" { \n   Patient(id: 1023) { id, active } \n }","variables":{}}
@@ -197,7 +197,7 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: GraphQL query 2
-    Given url 'http://test.fhir.org/r4/Observation/11/$graphql'
+    Given path 'Observation/11/$graphql'
     And header Accept = 'application/fhir+json'
     And header Content-Type = 'application/json'
     And request {"query":"  { id subject { reference resource(type : Patient) { gender name {Given family}} }  code {coding {system code} } }","variables":{}}
