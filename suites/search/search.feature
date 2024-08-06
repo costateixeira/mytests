@@ -16,19 +16,22 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: Get a patient by logical identifier
-    Given path 'Patient?identifier=urn:trinhcongminh|123456'
+    Given path 'Patient'
+    And param identifier = 'urn:trinhcongminh|123456'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
 
   Scenario: Get a patient by another logical identifier
-    Given path 'Patient?identifier=http://trilliumbridge.eu/fhir/demos/eumfh/patient_id|EUR01P0004'
+    Given path 'Patient'
+    And param identifier = 'http://trilliumbridge.eu/fhir/demos/eumfh/patient_id|EUR01P0004'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
 
   Scenario: Get Patients older than 21 years
-    Given path 'Patient?birthdate=lt2010-11-03'
+    Given path 'Patient'
+    And param birthdate = 'lt2010-11-03'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
@@ -56,7 +59,8 @@ Scenario: Search all Patients
     Then status 200
 
   Scenario: Search non-existing parameter
-    Given path 'Patient?marital-status=http://terminology.hl7.org/CodeSystem/v3-MaritalStatus|U'
+    Given path 'Patient'
+    And param marital-status = 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus|U'
     And header Accept = 'application/fhir+json'
     When method GET
     Then status 200
